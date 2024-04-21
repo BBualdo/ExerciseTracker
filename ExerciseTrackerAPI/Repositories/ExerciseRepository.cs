@@ -18,8 +18,9 @@ public class ExerciseRepository : IExerciseRepository
     await _context.SaveChangesAsync();
   }
 
-  public async Task DeleteExercise(Exercise exercise)
+  public async Task DeleteExercise(int id)
   {
+    Exercise exercise = await _context.Exercises.SingleAsync(exercise => exercise.Id == id);
     _context.Exercises.Remove(exercise);
     await _context.SaveChangesAsync();
   }
@@ -34,9 +35,9 @@ public class ExerciseRepository : IExerciseRepository
     return await _context.Exercises.FindAsync(id);
   }
 
-  public async Task UpdateExercise(Exercise exercise)
+  public async Task UpdateExercise(int id, Exercise exercise)
   {
-    _context.Exercises.Update(exercise);
+    _context.Entry(exercise).State = EntityState.Modified;
     await _context.SaveChangesAsync();
   }
 }

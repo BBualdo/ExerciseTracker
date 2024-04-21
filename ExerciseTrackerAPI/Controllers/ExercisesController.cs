@@ -38,19 +38,19 @@ public class ExercisesController : ControllerBase
     return CreatedAtAction(nameof(AddExercise), exercise);
   }
 
-  [HttpPut]
-  public async Task<ActionResult> UpdateExercise(Exercise exercise)
+  [HttpPut("{id}")]
+  public async Task<ActionResult> UpdateExercise(int id, Exercise exercise)
   {
+    if (exercise.Id != id) return NotFound();
     if (exercise == null) return BadRequest();
-    await _exerciseRepository.UpdateExercise(exercise);
+    await _exerciseRepository.UpdateExercise(id, exercise);
     return NoContent();
   }
 
-  [HttpDelete]
-  public async Task<ActionResult> DeleteExercise(Exercise exercise)
+  [HttpDelete("{id}")]
+  public async Task<ActionResult> DeleteExercise(int id)
   {
-    if (exercise == null) return BadRequest();
-    await _exerciseRepository.DeleteExercise(exercise);
+    await _exerciseRepository.DeleteExercise(id);
     return NoContent();
   }
 }
