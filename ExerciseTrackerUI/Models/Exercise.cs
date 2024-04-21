@@ -1,11 +1,11 @@
-﻿namespace ExerciseTrackerUI.Models;
+﻿using System.Text.Json.Serialization;
 
-internal class Exercise
-{
-  public int Id { get; set; }
-  public string Name { get; set; } = "Exercise";
-  public DateTime StartDate { get; set; }
-  public DateTime EndDate { get; set; }
-  public TimeSpan Duration => EndDate - StartDate;
-  public string? Comments { get; set; }
-}
+namespace ExerciseTrackerUI.Models;
+
+internal record class Exercise(
+                               [property: JsonPropertyName("id")] int Id,
+                               [property: JsonPropertyName("name")] string Name,
+                               [property: JsonPropertyName("startDate")] DateTime StartDate,
+                               [property: JsonPropertyName("endDate")] DateTime EndDate,
+                               [property: JsonPropertyName("duration")] TimeSpan Duration,
+                               [property: JsonPropertyName("comments")] string Comments);
