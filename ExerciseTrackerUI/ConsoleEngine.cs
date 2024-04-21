@@ -36,7 +36,7 @@ internal static class ConsoleEngine
 
     foreach (Exercise exercise in exercises)
     {
-      table.AddRow(exercise.Id.ToString(), exercise.Name, exercise.StartDate.ToString("dd-MM-yyyy HH:mm"), exercise.EndDate.ToString("dd-MM-yyyy HH:mm"), exercise.Duration.TotalMilliseconds.ToString() + " minutes", exercise.Comments ?? "");
+      table.AddRow(exercise.Id.ToString(), exercise.Name, exercise.StartDate.ToString("dd-MM-yyyy HH:mm"), exercise.EndDate.ToString("dd-MM-yyyy HH:mm"), exercise.Duration.TotalMinutes.ToString() + " minutes", exercise.Comments ?? "");
     }
 
     AnsiConsole.Write(table);
